@@ -6,4 +6,8 @@ const router = express.Router();
 
 router.get('/', IndexController.index);
 
+import apiRouter from './api';
+
+router.use('/api', apiRouter);
+
 export default router;
