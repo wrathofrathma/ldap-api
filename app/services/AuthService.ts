@@ -23,18 +23,18 @@ export const AuthService = {
 	/**
 	 * Attempts to authenticate a user against the LDAP server by binding against the server.
 	 *  
-	 * @param {string} username User account name.
+	 * @param {string} uid User ID
 	 * @param {string} password User's unauth
 	 * @return {boolean} True if their token is valid, false if it isn't.
 	 */
-	login(username: string, password: string): Promise<string> {
+	login(uid: string, password: string): Promise<string> {
 		return new Promise<string>((resolve, reject) => {
 			// Connect to the server
 			const client = ldap.createClient({
 				url: config.ldap.url
 			});
 
-			const bind_string = `uid=${username},${config.ldap.user_dc},${config.ldap.root}`
+			const bind_string = `uid=${uid},${config.ldap.user_dc},${config.ldap.root}`
 
 			// Attempt to authenticate
 			client.bind(bind_string, password, (err) => {
@@ -43,7 +43,7 @@ export const AuthService = {
 					reject(new UnauthorizedException("LDAP Authentication Failed"));
 				}
 
-				const token = jwt.sign({username}, config.auth.signature);
+				const token = jwt.sign({uid}, config.auth.signature);
 
 				// Resolve with the new auth token.
 				resolve(token);

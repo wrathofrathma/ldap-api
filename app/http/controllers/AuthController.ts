@@ -13,11 +13,11 @@ export const AuthController = {
 	 * @param next {NextFunction} Express NextFunction (used for middleware)
 	 */
 	async login(req: Request, res: Response, next: NextFunction) {
-		const { username, password } = req.body;
+		const { uid, password } = req.body;
 
 		try {
 			// Attempt to login
-			const token = await AuthService.login(username, password);
+			const token = await AuthService.login(uid, password);
 
 			res.send(token);
 		} 

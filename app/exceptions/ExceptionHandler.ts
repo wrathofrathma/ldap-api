@@ -20,9 +20,16 @@ export default async function (err: BaseException, req: Request, res: Response, 
 	err.status ? res.status(err.status) : res.status(400);
 
 	// Send a JSON response since this template is mostly for APIs
-	res.send({
-		"status": err.status,
-		"message": err.message
-	});
-
+	try {
+		res.send({
+			"status": err.status,
+			"message": JSON.parse(err.message)
+		});
+	}
+	catch (e) {
+		res.send({
+			"status": err.status,
+			"message": err.message
+		});
+	}
 }

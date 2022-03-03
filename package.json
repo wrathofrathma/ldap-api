@@ -41,6 +41,7 @@
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
     "ldapjs": "^2.3.2",
-    "prisma": "^3.9.2"
+    "prisma": "^3.9.2",
+    "zod": "^3.13.4"
   }
 }
