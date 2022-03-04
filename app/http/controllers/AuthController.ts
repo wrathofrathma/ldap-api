@@ -16,10 +16,9 @@ export const AuthController = {
 		const { uid, password } = req.body;
 
 		try {
-			// Attempt to login
 			const token = await AuthService.login(uid, password);
 
-			res.send(token);
+			res.send({token});
 		} 
 		catch (e) {
 			return next(e);
