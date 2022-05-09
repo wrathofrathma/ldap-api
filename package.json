@@ -8,7 +8,8 @@
   },
   "scripts": {
     "dev": "nodemon server.ts",
-    "test": "node -r ts-node/register/transpile-only bin/test.ts"
+    "test": "node -r ts-node/register/transpile-only bin/test.ts",
+    "start": "npm run server.ts"
   },
   "repository": {
     "type": "git",
