@@ -1,8 +1,10 @@
 // Import config to setup the global configuration object.
 import { config } from './config'
 import express from 'express';
+import cors from 'cors';
 
 const app = express();
+app.use(cors());
 
 /** Setup request body parsing */
 import bodyParser from 'body-parser';
